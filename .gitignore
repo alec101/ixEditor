@@ -31,5 +31,11 @@
 *.out
 *.app
 
+
+#custom stuff
 **/build/*
 **/.vs/*
+console.txt
+console.bak
+*.exp
+*.pdb
