@@ -1,5 +1,34 @@
 #pragma once
 
+#ifdef WIN32_LEAN_AND_MEAN
+#undef WIN32_LEAN_AND_MEAN
+#endif
+#include <Windows.h>
+
+//#include "assimp/include/assimp/importerdesc.h"
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+
+#include <assimp/scene.h>
+#include <assimp/Importer.hpp>
+
+
+#include "ix/ix.h"
+#include "ui.h"
+#include "viewer.h"
+#include "input.h"
+#include "output.h"
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+
 
 /// osi required libs
 #ifdef _WIN64
@@ -16,6 +45,8 @@
     #pragma comment(lib, "vko.win64.dbg.lib")
     #pragma comment(lib, "osi.vk.win64.dbg.lib")
     #pragma comment(lib, "ix.vk.win64.dbg.lib")
+    #pragma comment(lib, "debug/assimp-vc143-mtd.lib")
+
   #endif /// RELEASE / DEBUG
 #else
   #pragma comment(lib, "XInput_32.lib")

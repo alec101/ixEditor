@@ -1,15 +1,23 @@
-#include "ix/ix.h"
-
 #include "ix3do.h"
 
-
-Ix ix;
 
 #ifdef _DEBUG
 bool enableValidationLayers= true;
 #else
 bool enableValidationLayers= false;
 #endif
+
+
+Ix ix;
+UI ui;
+Viewer viewer;
+Input input;
+Output output;
+
+// 3DO's will have to have a type of shader at least to be tied to, maybe? possible...
+
+
+
 
 #if defined OS_WIN && defined NDEBUG
 int WinMain(_In_  HINSTANCE hInstance, _In_  HINSTANCE hPrevInstance, _In_  LPSTR lpCmdLine, _In_  int nCmdShow) {
@@ -45,6 +53,9 @@ int main(int argc, char *argv[], char *envp[]) {
 
   Ix::console().saveBuffers();
 
+  ui.init();
+  viewer.init();
+
   while(1) {
     // osi & ix update
     osi.checkMSG();
@@ -54,13 +65,29 @@ int main(int argc, char *argv[], char *envp[]) {
     if(in.k.key[in.Kv.esc] || osi.flags.exit)
       break;
 
+    // console
+    if((in.k.lastKey[0].code== in.Kv.grave) && (!in.k.lastKey[0].checked)) {
+      in.k.clearTypedBuffer();
+      ix.console().toggle(), in.k.lastKey[0].checked= true;
+    }
     // window resized
     //if(osi.flags.windowResized)
     //  ui.updateOnWindowResize();
-
+    
     ix.update();
-    // ix.wsys().update(); // this is moved to ui.update 
+    ui.update();    /// has ix.wsys().update
+    
 
+    if(ix.startRender()) {
+      ix.startPerspective();
+      viewer.draw();
+      ix.endPerspective();
+
+      ui.draw();
+
+      
+      ix.endRender();
+    }
   } // infinite loop
     
     
@@ -69,3 +96,16 @@ int main(int argc, char *argv[], char *envp[]) {
   osi.exit(0);
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

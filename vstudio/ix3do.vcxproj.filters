@@ -9,9 +9,24 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="SHADERS">
+      <UniqueIdentifier>{fa5768ed-880e-4ec6-9fd8-aa9f9cc12215}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\ix3do.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ui.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\viewer.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\input.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\output.cpp">
       <Filter>SRC</Filter>
     </ClCompile>
   </ItemGroup>
@@ -19,5 +34,25 @@
     <ClInclude Include="..\source\ix3do.h">
       <Filter>INC</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\ui.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\viewer.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\input.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\output.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\output\shaders\viewer.frag.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
+    <None Include="..\output\shaders\viewer.vert.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
   </ItemGroup>
 </Project>
