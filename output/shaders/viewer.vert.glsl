@@ -6,33 +6,35 @@
 layout(location= 0) in vec3 in_pos;    // vert channel
 layout(location= 1) in vec3 in_nrm;    // nrm channel
 layout(location= 2) in vec2 in_tex;    // tex channel
+
 layout(location= 0) out vec3 out_UV;
+layout(location= 1) out vec3 out_nrm;
+layout(location= 2) out vec3 out_fragPos;
 
 // sets
 
 layout(set= 0, binding= 0) uniform GlobalUniforms {
   mat4 cameraPersp;       // perspective camera matrix
   mat4 cameraOrtho;       // orthographic camera matrix
+  vec3 cameraPos;
   int vpx, vpy;           // viewport position on the virtual desktop
+
+  vec4 sunPos;
+  vec4 sunColor;
+  float sunAmbientStr;
+  float sunSpecularStr;
 } glb;
 
 layout(set= 1, binding= 1) uniform sampler2D texSampler;
 
-//layout(set= 1, binding= 0) uniform UniformBufferObject {
-//  mat4 camera;
-//} ubo;
-
 //  push constants:
 
-/*
 layout(push_constant) uniform PConsts {
-  int blockID;    // terrain block index
-  //int view;     // one of the 4 possible camera positions
-  float x, y, z;  // position
-  // view could be flag-type, and you flag what side is visible
+  mat4 model;
+  int map0, map1, map2, map3;   // index of texture mappings
+  int flags;                    // 0x0001 selected block
 } p;
 
-*/
 
 
 // ###################################################################################
@@ -53,6 +55,13 @@ void main() {
 
   gl_Position= vec4(in_pos, 1); //+ vec4(p.x, p.y, p.z, 0);
   gl_Position= glb.cameraPersp* gl_Position;
+
+  // learnOGL.com :
+  //gl_Position = projection * view * model * vec4(aPos, 1.0);
+  //FragPos = vec3(model * vec4(aPos, 1.0));
+  //Normal = aNormal;
+  out_nrm= in_nrm;
+  out_fragPos= vec3(p.model* vec4(in_pos, 1.0f));
 
 
   out_UV= vec3(in_tex, 1);

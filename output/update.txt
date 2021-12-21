@@ -1,0 +1,8 @@
+#update usage:
+#workDir = the input file(s) working directory; that dir must mirror the files that must be used here
+workDir= ../../Bastion/!work
+file= testSave.i3d
+file= testSave.i3d
+file= testSave.i3d
+file= testSave.i3d
+

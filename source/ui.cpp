@@ -63,15 +63,15 @@ void UI::init() {
 
   /// colors ===============================================
 
-  col=         vec4(0.10f, 0.10f, 0.20f, 0.80f);
-  colHover=    vec4(0.75f, 0.75f, 0.15f, 0.80f);         // 0.95f, 0.85f, 0.01f, .9f  good yellow but not liking
+  col=         vec4(0.10f, 0.10f, 0.20f, 0.90f);
+  colHover=    vec4(0.75f, 0.75f, 0.15f, 0.90f);         // 0.95f, 0.85f, 0.01f, .9f  good yellow but not liking
   colBRD=      vec4(0.70f, 0.70f, 0.70f, 1.00f);
-  colFocus=    vec4(0.15f, 0.75f, 0.15f, 0.80f);
+  colFocus=    vec4(0.15f, 0.75f, 0.15f, 0.90f);
   colBRDfocus= vec4(0.95f, 0.95f, 0.95f, 1.00f);
 
 
-  col=         vec4(0.10f, 0.10f, 0.20f, 1.0f);
-  colHover=    vec4(0.75f, 0.75f, 0.15f, 1.0f);         // 0.95f, 0.85f, 0.01f, .9f  good yellow but not liking
+  col=         vec4(0.10f, 0.10f, 0.20f, 0.8f);
+  colHover=    vec4(0.85f, 0.75f, 0.15f, 1.0f);          // 0.95f, 0.85f, 0.01f, .9f  good yellow but not liking
   colBRD=      vec4(0.70f, 0.70f, 0.70f, 1.0f);
   colFocus=    vec4(0.15f, 0.75f, 0.15f, 1.0f);
   colBRDfocus= vec4(0.95f, 0.95f, 0.95f, 1.0f);
@@ -83,14 +83,18 @@ void UI::init() {
   winStyle.window.useTexture= false;
   winStyle.scroll.colorArrows.set(1.0f, 1.0f, 1.0f, 1.0f);
   winStyle.scroll.colorDragbox.set(1.0f, 1.0f, 1.0f, 1.0f);
+  winStyle.scroll.color= col;
+  winStyle.scroll.colorHover= colHover;
+  winStyle.scroll.colorFocus= colFocus;
+
 
   winStyle.window.useTitle= true;
   winStyle.title.useTexture= false;
 
-  winStyle.title.color= col;
-  winStyle.title.colorHover= colHover;
-  winStyle.title.colorBRD= colBRD;
-  winStyle.title.colorFocus= colFocus;
+  winStyle.title.color=         col;
+  winStyle.title.colorHover=    colHover;
+  winStyle.title.colorBRD=      colBRD;
+  winStyle.title.colorFocus=    colFocus;
   winStyle.title.colorBRDfocus= colBRDfocus;
   
   winStyle.window.titleInside= true;
@@ -100,7 +104,24 @@ void UI::init() {
   winStyle.window.colorFocus= colFocus;
   winStyle.window.colorBRDfocus= colBRDfocus;
   
+  winStyle.button.color= col;
+  winStyle.button.colorBRD= colBRD;
+  winStyle.button.colorHover= colHover;
+  winStyle.button.colorFocus= colFocus;
+  winStyle.button.colorBRDfocus= colBRDfocus;
+  
+  winStyle.text.color= col;
+  winStyle.text.colorBRD= colBRD;
+  winStyle.text.colorHover= colHover;
+  winStyle.text.colorFocus= colFocus;
+  winStyle.text.colorBRDfocus= colBRDfocus;
 
+  winStyle.edit.color= col;
+  winStyle.edit.colorBRD= colBRD;
+  winStyle.edit.colorHover= colHover;
+  winStyle.edit.colorFocus= colFocus;
+  winStyle.edit.colorBRDfocus= colBRDfocus;
+  
   //winStyle.loadStyle("winTex1.txt");    << THIS DON'T create no errors
   ix.wsys().selStyle= &winStyle;
 
@@ -167,8 +188,8 @@ void UI::init() {
   i.meshTexCoords= w1->printStatic("", &p); p.y+= 12;
   i.meshMat=       w1->printStatic("", &p);
 
-  i.meshLastSel= 0;
-  i.matLastSel= 0;
+  //i.meshLastSel= 0;
+  //i.matLastSel= 0;
 
 
   // material ---------------
@@ -203,17 +224,55 @@ void UI::init() {
 
   // output I3D file
 
-  p.y= 40;  o.fileName= w2->printStatic("", &p);
+  p.y= 40; 
+  o.load=   ix.wsys().createButton("Load", w2, p.x, p.y, 50, 15);
+  o.update= ix.wsys().createButton("Update", w2, p.x+ 55, p.y, 50, 15);
+  p.y+= 20;
+  o.save=   ix.wsys().createButton("Save", w2, p.x, p.y, 50, 15);
+  o.saveAs= ix.wsys().createButton("SaveAs", w2, p.x+ 55, p.y, 50, 15);
+  p.y+= 20;
+  o.importFromCurrent= ix.wsys().createButton("IMPORT from left selection", w2, p.x, p.y, width- 6- 15, 15);
+  p.y+= 30;
+  ix.wsys().createButton("Visualize", w2, p.x, p.y, 50, 15);
+
+  p.y+= 25;
+  o.fileName= w2->printStatic("", &p);
 
   p.y+= 15; o.fileIndex=      w2->printStatic("", &p);
   p.y+= 15; o.inputFileName=  w2->printStatic("", &p);
-  p.y+= 15; o.inputMeshName=  w2->printStatic("", &p);
+  p.y+= 15; o.name=           w2->printStatic("", &p);
 
   p.y+= 15; o.flagsKeepHostData= w2->printStatic("", &p);
-  p.y+= 15; o.dataType= w2->printStatic("", &p);
-  p.y+= 15; o.affinity= w2->printStatic("", &p);
+
+  //p.y+= 15; o.dataType= w2->printStatic("", &p);
+  //p.y+= 15; o.affinity= w2->printStatic("", &p);
+
+  p.y+= 15; o.dataType= ix.wsys().createDropList(w2, p.x, p.y, width- 6- 15, 15); // w2->printStatic("", &p);
+  o.dataType->addOption("Data type 0");
+  o.dataType->addOption("Data type 1 interweaved");
+
+  p.y+= 15; o.affinity= ix.wsys().createDropList(w2, p.x, p.y, width- 6- 15, 15); // w2->printStatic("", &p);
+  // [def:0] mesh affinity, defining how the mesh will work, internally.
+  //  0: own buffer in device memory
+  //  1: own buffer in host visible memory
+  //  2: shared buffer - it will not handle the buffer in any way, it is given a place in one
+  // 64: uber buffer system
+  o.affinity->addOption("0: own buf in device mem");
+  o.affinity->addOption("1: own buf in host visible mem");
+  o.affinity->addOption("2: shared buf- it will not handle the buffer in any way");
+  o.affinity->addOption("64: uber buffer sys");
+
   p.y+= 15; o.nrVert=   w2->printStatic("", &p);
   p.y+= 15; o.dataSize= w2->printStatic("", &p);
+
+
+  /*
+  ixButton *load;
+  ixButton *update;
+  ixButton *save;
+  ixButton *saveAs;
+  ixButton *importFromCurrent;
+  */
 
 
   updateControls();
@@ -275,9 +334,6 @@ void UI::updateControls() {
 
   updateOutputMeshDetails();
 
-
-
-
 }
 
 
@@ -296,7 +352,7 @@ void UI::updateInputMeshDetails() {
     w1->printStaticModify(i.meshMat,       s.d);
   }
 
-  i.meshLastSel= i.lMesh->selNr;
+  input.meshSel= i.lMesh->selNr;
 }
 
 
@@ -360,41 +416,54 @@ void UI::updateInputMatDetails() {
     i.matButTransparent->setVisible(false);
     i.matButReflective->setVisible(false);
   }
-  i.matLastSel= i.lMats->selNr;
+  input.matSel= i.lMats->selNr;
 }
 
 
 void UI::updateOutputMeshDetails() {
   str8 s;
 
-  s.f("Filename[%s]", output.outMesh.fileName.d);     w2->printStaticModify(o.fileName, s.d);
+  s.f("Filename[%s]", output.outMesh.fileName.d);        w2->printStaticModify(o.fileName, s.d);
 
-  s.f("File index[%d]", output.outMesh.fileIndex);    w2->printStaticModify(o.fileIndex, s.d);
-  s.f("Input File[%s]", "NYI");                       w2->printStaticModify(o.inputFileName, s.d);
-  s.f("Input Mesh[%s]", "NYI");                       w2->printStaticModify(o.inputMeshName, s.d);
+  s.f("File index[%d]", output.outMesh.fileIndex);       w2->printStaticModify(o.fileIndex, s.d);
+  s.f("Input File[%s]", output.outMesh.fileInputName.d); w2->printStaticModify(o.inputFileName, s.d);
+  s.f("Mesh name[%s]",  output.outMesh.name);            w2->printStaticModify(o.name, s.d);
 
   s.f("Flag KeepHostData[%d]", output.outMesh.flags.isUp(0x02));    w2->printStaticModify(o.flagsKeepHostData, s.d);
+
+  /*
   if(output.outMesh.dataType== 0)
     s.f("Data type[%s]", "0");
   else if(output.outMesh.dataType== 1)
     s.f("Data type[%s]", "1 interweaved");
   w2->printStaticModify(o.dataType, s.d);
+  */
+  //s.f("Affinity[%d]", output.outMesh.affinity);   w2->printStaticModify(o.affinity, s.d);
 
-  s.f("Affinity[%d]", output.outMesh.affinity);   w2->printStaticModify(o.affinity, s.d);
+  o.dataType->select(output.outMesh.dataType);
+
+  if(output.outMesh.affinity== 0)       o.affinity->select(0);
+  else if(output.outMesh.affinity== 1)  o.affinity->select(1);
+  else if(output.outMesh.affinity== 2)  o.affinity->select(2);
+  else if(output.outMesh.affinity== 64) o.affinity->select(3);
+  
+
   s.f("Nr Vertices[%d]", output.outMesh.nrVert);  w2->printStaticModify(o.nrVert, s.d);
   s.f("Data size[%d]", output.outMesh.size);      w2->printStaticModify(o.dataSize, s.d);
-
-  NYI must be implemented (input file/input mesh name)
-    buttons to change things in the output, cuz this MUST change anything in the output
-    load for the output;
-  save for the output;
-  maybe save as for the output
-    this should be done in few days, if i can work proper
-    ;
 }
 
 
 
+
+void UI::updateI3OfromControls() {
+  
+  if(o.affinity->selNr<= 2) 
+    output.outMesh.affinity= o.affinity->selNr;
+  else if(o.affinity->selNr== 3)
+    output.outMesh.affinity= 64;
+
+  output.outMesh.changeDataType(o.dataType->selNr);
+}
 
 
 
@@ -427,23 +496,54 @@ void UI::update() {
   // if wsys had hid interactions, then no update is required anymore
   if(ix.wsys().update()) {
     
-    // LOAD
+    // INPUT window
+    /// LOAD
     if(i.butLoad->is.activated) {
-      //butLoad->is.a
       if(input.loadFile()) {
+        i.lMesh->select(0);
+        i.lMats->select(0);
         updateControls();
-
-      } else {
-
       }
       return;
     }
 
-    if(i.meshLastSel!= i.lMesh->selNr)
+    if(input.meshSel!= i.lMesh->selNr)
       updateInputMeshDetails();
     
-    if(i.matLastSel!= i.lMats->selNr)
+    if(input.matSel!= i.lMats->selNr)
       updateInputMatDetails();
+
+    // I3D window
+    /// import from input window
+    if(o.importFromCurrent->is.activated) {
+
+      uint8 saveAffinity= output.outMesh.affinity;    // mesh will always have own buffer for this program
+      ixFlags8 saveFlags= output.outMesh.flags;       
+
+      output.inportMesh_n(&output.outMesh, input.scene, input.meshSel);
+      ix.vk.DeviceWaitIdle(ix.vk.device);
+      output.mat->updateSet();
+      ix.vk.DeviceWaitIdle(ix.vk.device);
+
+      // MATERIAL MUST BE IMPORTED HERE, output.loadMat_n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      //mat->map[0]= ix.vki.noTexture;
+      //output.inportMat_n(..., input.scene, mat number);
+
+
+      output.outMesh.flags.setUp(0x02);
+      output.outMesh.affinity= 0;
+      output.outMesh.upload();                        // upload
+      output.outMesh.affinity= saveAffinity;
+      output.outMesh.flags= saveFlags;
+      ix.vk.DeviceWaitIdle(ix.vk.device);
+
+      updateOutputMeshDetails();
+    }
+    /// save / save button pressed
+    if(o.save->is.activated) {
+      output.save();
+      updateOutputMeshDetails();
+    }
 
 
     if(ix.wsys().flags.isUp((uint32)ixeWSflags::mouseUsed)) {
@@ -464,8 +564,30 @@ void UI::update() {
   // mouse drag to rotate / move the camera around the object must go here <<<<<<<<<<<<<<<<<<
   // ^^^^^^^^^^^^^^^^
 
-
-
+  if(in.m.but[2].down) {
+    if(in.m.dx || in.m.dy) {
+      /* direction.x= cos(viewer.angle.z)* cos(viewer.angle.x);
+         direction.y= sin(viewer.angle.x);
+         direction.z= sin(viewer.angle.z)* cos(viewer.angle.x); */
+  
+      // just using delta angles
+      if(in.m.dy)
+        ix.cameraPersp.orbitX((float)in.m.dy);
+      if(in.m.dx)
+        ix.cameraPersp.orbitZ((float)in.m.dx);
+      
+    }
+  }
+  if(in.m.wheel) {
+    vec3 unit= normalize(ix.cameraPersp.pos);
+    if(in.m.wheel> 0)
+      ix.cameraPersp.pos+= unit;
+    else
+      if(ix.cameraPersp.pos.length()> 1.01f)
+        ix.cameraPersp.pos-= unit;
+    ix.cameraPersp.computeViewMat();
+  }
+  
 }
 
 
@@ -475,7 +597,11 @@ void UI::draw() {
   ix.vk.CmdSetScissor(ix.vki.ortho.cmd[ix.vki.fi]->buffer, 0, 1, &ix.vki.render.scissor);
 
   ix.wsys().draw();
+  ix.pr.f2((float)(ix.win->x0+ 500), (float)(ix.win->y0+ 0),
+           "Camera Position [%2.2fx %2.2fy %2.2fz]", ix.cameraPersp.pos.x, ix.cameraPersp.pos.y, ix.cameraPersp.pos.z);
   ix.console().update();
+  
+
   ix.endOrtho();
 }
 

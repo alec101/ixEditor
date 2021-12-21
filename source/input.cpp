@@ -8,6 +8,7 @@
 
 Input::Input() {
   scene= null;
+  meshSel= matSel= 0;
 }
 
 
@@ -21,13 +22,12 @@ void Input::delData() {
 }
 
 
+#include <filesystem>
 
 bool Input::loadFile() {
-  
-  // open file name dialog
-  OPENFILENAME ofn;
-  char fname[MAX_PATH]= "";
-
+  const int bufferSize= 512;
+  char fname[bufferSize]= "";
+  OPENFILENAME ofn;                 // open file name dialog
   ZeroMemory(&ofn, sizeof(ofn));
 
   /*
@@ -42,56 +42,75 @@ bool Input::loadFile() {
     ;
     */
 
+  /*  SCREW PREFF SEPARATOR, USE THAT replace FUNC FROM STD
+  std::filesystem::path base("/is/the/speed/of/light/absolute");
+  std::filesystem::path p("/is/the/speed/of/light/absolute/or/is/it/relative/to/the/observer");
+  std::filesystem::path p2("/little/light/races/in/orbit/of/a/rogue/planet");
+  std::cout << "Base is base: " << std::filesystem::relative(p, base).generic_string() << '\n'
+            << "Base is deeper: " << std::filesystem::relative(base, p).generic_string() << '\n'
+            << "Base is orthogonal: " << std::filesystem::relative(p2, base).generic_string();
+  */
+
+  
+  matSel= meshSel= 0;
 
   ofn.lStructSize=  sizeof(ofn); // SEE NOTE BELOW
   ofn.hwndOwner=    (HWND)ix.win->_hWnd;
   ofn.lpstrFilter=  "Collada Files (*.dae)\0*.dae\0Blender Files (*.blend)\0*.blend\0All Files (*.*)\0*.*\0";
   ofn.lpstrFile=    fname;
-  ofn.nMaxFile=     MAX_PATH;
-  ofn.Flags=        OFN_EXPLORER| OFN_FILEMUSTEXIST| OFN_HIDEREADONLY;
+  ofn.nMaxFile=     bufferSize;
+  ofn.Flags=        OFN_EXPLORER| OFN_FILEMUSTEXIST| OFN_HIDEREADONLY| OFN_NOCHANGEDIR;
   ofn.lpstrDefExt=  "dae";
 
   if(GetOpenFileName(&ofn)) {
-    // Do something usefull with the filename stored in szFileName 
-    ix.console().printf("FILE OPEN: [%s]", fname);
+    
+    std::filesystem::path base(std::filesystem::current_path());
+    std::filesystem::path fsPath(fname);
+    std::filesystem::path relative(std::filesystem::relative(fsPath, base));
 
-    scene= aiImp.ReadFile(fname, 0);
-    if(scene== null) {
-      ix.console().printf("assimp ReadFile error: [%s]", aiImp.GetErrorString());
+    str8 relPath((char *)relative.generic_u8string().c_str());
+    ixUtil::changePathSeparator(&relPath);
+
+    if(loadFileName(relPath.d)) {
+      //fileName= (char *)fsPath.filename().generic_u8string().c_str();
+      return true;
+    } else
       return false;
-    }
-
-    if(scene->mFlags& AI_SCENE_FLAGS_INCOMPLETE) {
-      ix.console().print("assimp scene is incomplete");
-      return false;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return true;
   }
   else return false;
 }
 
 
 
+bool Input::loadFileName(cchar *in_name, bool useIxConsole) {
+  // Do something useful with the filename stored in szFileName 
+  if(useIxConsole)
+    ix.console().printf("FILE OPEN: [%s]", in_name);
+  else
+    printf("FILE OPEN: [%s]\n", in_name);
 
+  scene= aiImp.ReadFile(in_name, 0);
+  if(scene== null) {
+    if(useIxConsole)
+      ix.console().printf("assimp ReadFile error: [%s]", aiImp.GetErrorString());
+    else
+      printf("assimp ReadFile error: [%s]\n", aiImp.GetErrorString());
+    return false;
+  }
+
+  if(scene->mFlags& AI_SCENE_FLAGS_INCOMPLETE) {
+    if(useIxConsole)
+      ix.console().print("assimp scene is incomplete");
+    else
+      printf("assimp scene is incomplete\n");
+    return false;
+  }
+
+  std::filesystem::path fsPath(in_name);
+  fileName= (char *)fsPath.filename().generic_u8string().c_str();
+
+  return true;
+}
 
 
 

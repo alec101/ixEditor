@@ -19,11 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\input.cpp" />
-    <ClCompile Include="..\source\ix3do.cpp" />
-    <ClCompile Include="..\source\output.cpp" />
-    <ClCompile Include="..\source\ui.cpp" />
-    <ClCompile Include="..\source\viewer.cpp" />
+    <ClCompile Include="..\source\input.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ix3do.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="..\source\ix3do.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ix3do.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="..\source\output.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ix3do.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="..\source\ui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ix3do.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="..\source\viewer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ix3do.h</PrecompiledHeaderFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\input.h" />

@@ -5,17 +5,27 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ix3do", "ix3do.vcxproj", "{4F1F3BB8-D107-440A-80F1-03AD6D72538A}"
 	ProjectSection(ProjectDependencies) = postProject
+		{00A87F24-CF13-4904-858D-783E5154643B} = {00A87F24-CF13-4904-858D-783E5154643B}
 		{B0002545-191A-44CD-9CA9-5CF386063F87} = {B0002545-191A-44CD-9CA9-5CF386063F87}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ix", "..\..\ix\vstudio\ix.vcxproj", "{B0002545-191A-44CD-9CA9-5CF386063F87}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00A87F24-CF13-4904-858D-783E5154643B} = {00A87F24-CF13-4904-858D-783E5154643B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "assimp", "..\..\assimp\BINARIES\Win32\code\assimp.vcxproj", "{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OSInteraction", "..\..\osi\vstudio\OSInteraction.vcxproj", "{00A87F24-CF13-4904-858D-783E5154643B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		glDebug|x64 = glDebug|x64
+		glDebug|x86 = glDebug|x86
+		glRelease|x64 = glRelease|x64
+		glRelease|x86 = glRelease|x86
 		MinSizeRel|x64 = MinSizeRel|x64
 		MinSizeRel|x86 = MinSizeRel|x86
 		Release|x64 = Release|x64
@@ -32,6 +42,14 @@ Global
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.Debug|x64.Build.0 = Debug|x64
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.Debug|x86.ActiveCfg = Debug|Win32
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.Debug|x86.Build.0 = Debug|Win32
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glDebug|x64.ActiveCfg = Debug|x64
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glDebug|x64.Build.0 = Debug|x64
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glDebug|x86.ActiveCfg = Debug|Win32
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glDebug|x86.Build.0 = Debug|Win32
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glRelease|x64.ActiveCfg = Release|x64
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glRelease|x64.Build.0 = Release|x64
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glRelease|x86.ActiveCfg = Release|Win32
+		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.glRelease|x86.Build.0 = Release|Win32
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.MinSizeRel|x64.ActiveCfg = Release|x64
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.MinSizeRel|x64.Build.0 = Release|x64
 		{4F1F3BB8-D107-440A-80F1-03AD6D72538A}.MinSizeRel|x86.ActiveCfg = Release|Win32
@@ -56,6 +74,14 @@ Global
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.Debug|x64.Build.0 = vkDebug|x64
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.Debug|x86.ActiveCfg = Debug|Win32
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.Debug|x86.Build.0 = Debug|Win32
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glDebug|x64.ActiveCfg = Debug|x64
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glDebug|x64.Build.0 = Debug|x64
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glDebug|x86.ActiveCfg = Debug|Win32
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glDebug|x86.Build.0 = Debug|Win32
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glRelease|x64.ActiveCfg = Release|x64
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glRelease|x64.Build.0 = Release|x64
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glRelease|x86.ActiveCfg = Release|Win32
+		{B0002545-191A-44CD-9CA9-5CF386063F87}.glRelease|x86.Build.0 = Release|Win32
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.MinSizeRel|x64.ActiveCfg = Debug|x64
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.MinSizeRel|x64.Build.0 = Debug|x64
 		{B0002545-191A-44CD-9CA9-5CF386063F87}.MinSizeRel|x86.ActiveCfg = vkRelease|Win32
@@ -80,6 +106,14 @@ Global
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.Debug|x64.Build.0 = Debug|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.Debug|x86.ActiveCfg = Debug|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.Debug|x86.Build.0 = Debug|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glDebug|x64.ActiveCfg = Debug|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glDebug|x64.Build.0 = Debug|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glDebug|x86.ActiveCfg = RelWithDebInfo|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glDebug|x86.Build.0 = RelWithDebInfo|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glRelease|x64.ActiveCfg = Release|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glRelease|x64.Build.0 = Release|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glRelease|x86.ActiveCfg = RelWithDebInfo|x64
+		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.glRelease|x86.Build.0 = RelWithDebInfo|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.MinSizeRel|x86.ActiveCfg = MinSizeRel|x64
@@ -100,6 +134,38 @@ Global
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.vkRelease|x64.Build.0 = Release|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.vkRelease|x86.ActiveCfg = RelWithDebInfo|x64
 		{5CC09A92-A0BB-314D-9EC2-DE9AD67F9764}.vkRelease|x86.Build.0 = RelWithDebInfo|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.Debug|x64.ActiveCfg = Debug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.Debug|x64.Build.0 = Debug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.Debug|x86.ActiveCfg = Debug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.Debug|x86.Build.0 = Debug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.glDebug|x64.ActiveCfg = glDebug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.glDebug|x64.Build.0 = glDebug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.glDebug|x86.ActiveCfg = glDebug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.glDebug|x86.Build.0 = glDebug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.glRelease|x64.ActiveCfg = glRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.glRelease|x64.Build.0 = glRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.glRelease|x86.ActiveCfg = glRelease|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.glRelease|x86.Build.0 = glRelease|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.MinSizeRel|x64.ActiveCfg = glRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.MinSizeRel|x64.Build.0 = glRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.MinSizeRel|x86.ActiveCfg = Debug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.MinSizeRel|x86.Build.0 = Debug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.Release|x64.ActiveCfg = Release|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.Release|x64.Build.0 = Release|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.Release|x86.ActiveCfg = Release|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.Release|x86.Build.0 = Release|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.RelWithDebInfo|x64.ActiveCfg = Release|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.RelWithDebInfo|x64.Build.0 = Release|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.RelWithDebInfo|x86.ActiveCfg = Release|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.RelWithDebInfo|x86.Build.0 = Release|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkDebug|x64.ActiveCfg = vkDebug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkDebug|x64.Build.0 = vkDebug|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkDebug|x86.ActiveCfg = vkDebug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkDebug|x86.Build.0 = vkDebug|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkRelease|x64.ActiveCfg = vkRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkRelease|x64.Build.0 = vkRelease|x64
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkRelease|x86.ActiveCfg = vkRelease|Win32
+		{00A87F24-CF13-4904-858D-783E5154643B}.vkRelease|x86.Build.0 = vkRelease|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

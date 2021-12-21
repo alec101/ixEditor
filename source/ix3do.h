@@ -1,11 +1,15 @@
 #pragma once
 
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS 1
+#endif
+
+
 #ifdef WIN32_LEAN_AND_MEAN
 #undef WIN32_LEAN_AND_MEAN
 #endif
 #include <Windows.h>
 
-//#include "assimp/include/assimp/importerdesc.h"
 #ifdef min
 #undef min
 #endif
@@ -13,11 +17,14 @@
 #undef max
 #endif
 
+#include <filesystem>
+
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 
-
 #include "ix/ix.h"
+#include "osi/include/util/fileOp.h"
+
 #include "ui.h"
 #include "viewer.h"
 #include "input.h"
@@ -68,7 +75,3 @@
 
 
 extern Ix ix;
-
-
-
-

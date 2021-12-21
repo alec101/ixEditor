@@ -24,7 +24,7 @@ public:
 
     void *meshVert, *meshNorm, *meshTexCoords, *meshMat;
 
-    int32 meshLastSel, matLastSel;
+    //int32 meshLastSel, matLastSel;
 
     void *matDiffuse, *matAmbient, *matSpecular, *matEmissive, *matTransparent, *matReflective;
     ixButton *matButDiffuse, *matButAmbient, *matButSpecular, *matButEmissive, *matButTransparent, *matButReflective;
@@ -36,14 +36,21 @@ public:
     void *fileIndex;
 
     void *inputFileName;
-    void *inputMeshName;
+    void *name;
 
     void *flagsKeepHostData;
-    void *dataType;
-    void *affinity;
+    ixDropList *dataType; //void *dataType;
+    ixDropList *affinity; //void *affinity;
     void *nrVert;
     void *dataSize;
-      
+    
+    ixButton *load;
+    ixButton *update;
+    ixButton *save;
+    ixButton *saveAs;
+    ixButton *importFromCurrent;
+    ixButton *visualize;
+
   } o;
 
 
@@ -61,6 +68,8 @@ public:
   void updateInputMatDetails();
 
   void updateOutputMeshDetails();
+
+  void updateI3OfromControls();
 
   //void updateControlsNull();
 
