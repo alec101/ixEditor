@@ -1,4 +1,4 @@
 cls
 rem #######################
-glslangValidator  -V viewer.vert.glsl -o viewer.vert.spv
-glslangValidator  -V viewer.frag.glsl -o viewer.frag.spv
+glslangValidator  -V I3Dviewer.vert.glsl -o I3Dviewer.vert.spv
+glslangValidator  -V I3Dviewer.frag.glsl -o I3Dviewer.frag.spv

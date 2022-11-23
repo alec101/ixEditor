@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="INC">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="SRC">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SHADERS">
+      <UniqueIdentifier>{fa5768ed-880e-4ec6-9fd8-aa9f9cc12215}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\ixEditor.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\I3Dui.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\I3Deditor.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\I3Dinput.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\I3Doutput.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\window.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\TEXeditor.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\TEXinput.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\TEXoutput.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\TEXui.cpp">
+      <Filter>SRC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\ixEditor.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\I3Dui.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\I3Deditor.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\I3Dinput.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\I3Doutput.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\window.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\TEXeditor.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\TEXinput.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\TEXoutput.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\TEXui.h">
+      <Filter>INC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\output\shaders\I3Dviewer.frag.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
+    <None Include="..\output\shaders\I3Dviewer.vert.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
+    <None Include="..\output\shaders\TEXviewer.frag.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
+    <None Include="..\output\shaders\TEXviewer.vert.glsl">
+      <Filter>SHADERS</Filter>
+    </None>
+  </ItemGroup>
+</Project>
